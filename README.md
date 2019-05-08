@@ -6,54 +6,6 @@ http watch on
 package main
 
 import (
-	"fmt"
-	"github.com/astaxie/beego/logs"
-	"github.com/nahid/gohttp"
-	"os"
-	"time"
-)
-
-type Content struct {
-	url     string
-	content []byte
-}
-var MiniBatch = 10;
-var outTime int64 = 5;
-var start = 0;
-
-type WatchData struct {
-	Token string
-	Msg   string
-	Topic string
-}
-
-var (
-	HttpWatcher *WatchClient
-)
-var WatchThreadNum = 4;
-var ticker = time.NewTicker(time.Duration(outTime) * time.Second) // --- A
-type MessageWatcher struct {
-	start  int
-	offset int
-}
-
-type WatchClient struct {
-	url string
-	lineHttpChan chan *MessageWatcher
-}
-
-var ch = make(chan *gohttp.AsyncResponse)
-
-func NewHttpWatcher( address string) (afk *WatchClient, err error) {
-	afk = &WatchClient{
-		url:address,
-		lineHttpChan:make(chan *MessageWatcher,10000),
-	}
-	if err != nil {
-		fmt.Printf("Failed to create Connetcion: %s\n", err)
-package main
-
-import (
 	"bufio"
 	"fmt"
 	"github.com/astaxie/beego/logs"
@@ -188,4 +140,5 @@ func loopWorker(){
 		}
 	}
 }
+
 ```
